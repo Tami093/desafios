@@ -18,13 +18,13 @@ public class ListaReddit {
 		ArrayList<String> subreedit = new ArrayList<String>();
 		ArrayList<String> titulo = new ArrayList<String>();
 		ArrayList<String> linkSubreddit = new ArrayList<String>();
-
+		//vetor de subreddits  e arrays upvotes subreedit titulo linkSubreddit
 		listaSubrredit(lista, upvotes, subreedit, titulo, linkSubreddit);
 		imprir(upvotes, subreedit, titulo, linkSubreddit);
 	}
 
-	public static void imprir(ArrayList<String> upvotes, ArrayList<String> subreedit, ArrayList<String> titulo,
-			ArrayList<String> linkSubreddit) {
+	public static void imprir(ArrayList<String> upvotes, ArrayList<String> subreedit, ArrayList<String> titulo,ArrayList<String> linkSubreddit) {
+		
 		boolean upvote;
 		for (int i = 0; i < upvotes.size(); i++) {
 			if (!(upvotes.get(i).equals("•"))) {
@@ -36,7 +36,6 @@ public class ListaReddit {
 							+ "Link: " + linkSubreddit.get(i) + "\n");
 				}
 			}
-
 		}
 	}
 
@@ -48,7 +47,7 @@ public class ListaReddit {
 
 			try {
 				Document doc = Jsoup.connect("https://old.reddit.com/r/" + lista[i]).get();
-				Elements eupvotes = doc.getElementsByClass("score unvoted");
+				Elements eupvotes = doc.select("div[class=score unvoted]");
 				Elements etituloLink = doc.select("div[class=top-matter]>p[class=title]>a");
 
 				for (Element reddit : eupvotes) {

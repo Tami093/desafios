@@ -20,14 +20,20 @@ public class ListaReddit {
 		ArrayList<String> linkSubreddit = new ArrayList<String>();
 
 		listaSubrredit(lista, upvotes, subreedit, titulo, linkSubreddit);
+		imprir(upvotes, subreedit, titulo, linkSubreddit);
+	}
+
+	public static void imprir(ArrayList<String> upvotes, ArrayList<String> subreedit, ArrayList<String> titulo,
+			ArrayList<String> linkSubreddit) {
 		boolean upvote;
 		for (int i = 0; i < upvotes.size(); i++) {
 			if (!(upvotes.get(i).equals("•"))) {
-				// System.out.println(upvotes.get(i) + "E igual");
 				upvote = upvotes.get(i).contains("k");
 				if (upvote || Integer.parseInt(upvotes.get(i)) >= 5000) {
-					System.out.println("Upvotes: " + upvotes.get(i) + "\n" + "Subreedit: r/" + subreedit.get(i) + "\n"
-							+ "Titulo: " + titulo.get(i) + "\n" + "Link: " + linkSubreddit.get(i) + "\n");
+					System.out.println("Upvotes: " + upvotes.get(i) + "\n" 
+							+ "Subreedit: r/" + subreedit.get(i) + "\n"
+							+ "Titulo: " + titulo.get(i) + "\n" 
+							+ "Link: " + linkSubreddit.get(i) + "\n");
 				}
 			}
 
@@ -39,7 +45,7 @@ public class ListaReddit {
 
 		int i = 0;
 		while (lista.length > i) {
-			System.out.println(lista[i]);
+
 			try {
 				Document doc = Jsoup.connect("https://old.reddit.com/r/" + lista[i]).get();
 				Elements eupvotes = doc.getElementsByClass("score unvoted");

@@ -1,20 +1,20 @@
 # Desafio Crawlers Parte 1
 
-# Plataforma
+## Plataforma
 Java 8
 
-# Dependências
+## Dependências
 * Jsoup 1.11.3
 
-# Pré requisito
+## Pré requisito
 * JDK8+
 * Maven 4.0.0
 
-# Construção
+## Construção
 Executar a execução
 mvm install
 
-# Descrição da solução
+## Descrição da solução
 
 Para desenvolvimento do desafio de crawlers parte 1 foi necessario aprender sobre a biblioteca jsoup.
 

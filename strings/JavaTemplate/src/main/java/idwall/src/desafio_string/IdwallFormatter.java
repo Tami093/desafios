@@ -6,7 +6,8 @@ public class IdwallFormatter extends StringFormatter {
 			private static int CONSTANTE_1 = 1;
 			private static int CONSTANTE_2 = 2;
 			private static int CONSTANTE_TAMANHO_LINHA = 40;
-			private static String Texto_Formatado = "";
+			private static String Texto_Formatado_Parte1 = "";
+			private static String Texto_Formatado_Parte2 = "";
 
 	    /**
 	     * Should format as described in the challenge
@@ -16,65 +17,42 @@ public class IdwallFormatter extends StringFormatter {
 	     */
 	    @Override
 	    public String format(String text) {
-	        
-			primeiraParteString(text);
-			Texto_Formatado+="\n\n\n";
-			segundaParteString(text);
-			
-			return Texto_Formatado;
-
+	    	formatacaoTexto(text);
+			String textoFormatado=Texto_Formatado_Parte1 +"\n\n\n" + Texto_Formatado_Parte2;
+			return textoFormatado;
 	    }
 	    
-	    private static void primeiraParteString(String texto) {
+	    private static void formatacaoTexto(String texto) {
 			int auxSairWhile = CONSTANTE_0, auxInicioDaString = CONSTANTE_0;
 			int auxTamanhoAteVaiString = CONSTANTE_TAMANHO_LINHA;
 
 			while (auxSairWhile != (texto.length() + CONSTANTE_1)) {
 				if (auxTamanhoAteVaiString == texto.length()) {
-					Texto_Formatado+=
+					Texto_Formatado_Parte1+=
 							retiraEspacoComecoFimDaFrase(texto.substring(auxInicioDaString, auxTamanhoAteVaiString));
-					auxSairWhile++;
-				} else {
-					if (texto.substring((auxTamanhoAteVaiString - CONSTANTE_1), auxTamanhoAteVaiString).equals(" ")
-							|| texto.substring(auxTamanhoAteVaiString, (auxTamanhoAteVaiString + CONSTANTE_1)).equals(" ")) {
-						Texto_Formatado+=
-								retiraEspacoComecoFimDaFrase(texto.substring(auxInicioDaString, auxTamanhoAteVaiString));
-					} else {
-						auxTamanhoAteVaiString = retornoTamanhoFimDaString(auxTamanhoAteVaiString, texto);
-						Texto_Formatado+=
-								retiraEspacoComecoFimDaFrase(texto.substring(auxInicioDaString, auxTamanhoAteVaiString));
-					}
-					auxInicioDaString = auxTamanhoAteVaiString;
-					auxTamanhoAteVaiString = verificaProximoTamanhoFinalString(texto, auxTamanhoAteVaiString);
-					auxSairWhile = auxTamanhoAteVaiString;
-					Texto_Formatado += "\n";
-				}
-			}
-		}
-
-		private static void segundaParteString(String texto) {
-			int auxSairWhile = CONSTANTE_0, auxInicioDaString = CONSTANTE_0;
-			int auxTamanhoAteVaiString = CONSTANTE_TAMANHO_LINHA;
-
-			while (auxSairWhile != (texto.length() + CONSTANTE_1)) {
-				if (auxTamanhoAteVaiString == texto.length()) {
-					Texto_Formatado +=adicionaEspacosAMais(
+					Texto_Formatado_Parte2 +=adicionaEspacosAMais(
 							retiraEspacoComecoFimDaFrase(texto.substring(auxInicioDaString, auxTamanhoAteVaiString)));
+					
 					auxSairWhile++;
 				} else {
 					if (texto.substring((auxTamanhoAteVaiString - CONSTANTE_1), auxTamanhoAteVaiString).equals(" ")
 							|| texto.substring(auxTamanhoAteVaiString, (auxTamanhoAteVaiString + CONSTANTE_1)).equals(" ")) {
-						Texto_Formatado+=(adicionaEspacosAMais(
+						Texto_Formatado_Parte1+=
+								retiraEspacoComecoFimDaFrase(texto.substring(auxInicioDaString, auxTamanhoAteVaiString));
+						Texto_Formatado_Parte2+=(adicionaEspacosAMais(
 								retiraEspacoComecoFimDaFrase(texto.substring(auxInicioDaString, auxTamanhoAteVaiString))));
 					} else {
 						auxTamanhoAteVaiString = retornoTamanhoFimDaString(auxTamanhoAteVaiString, texto);
-						Texto_Formatado+=(adicionaEspacosAMais(
+						Texto_Formatado_Parte1+=
+								retiraEspacoComecoFimDaFrase(texto.substring(auxInicioDaString, auxTamanhoAteVaiString));
+						Texto_Formatado_Parte2+=(adicionaEspacosAMais(
 								retiraEspacoComecoFimDaFrase(texto.substring(auxInicioDaString, auxTamanhoAteVaiString))));
 					}
 					auxInicioDaString = auxTamanhoAteVaiString;
 					auxTamanhoAteVaiString = verificaProximoTamanhoFinalString(texto, auxTamanhoAteVaiString);
 					auxSairWhile = auxTamanhoAteVaiString;
-					Texto_Formatado += "\n";
+					Texto_Formatado_Parte1 += "\n";
+					Texto_Formatado_Parte2 += "\n";
 				}
 			}
 		}
@@ -160,5 +138,4 @@ public class IdwallFormatter extends StringFormatter {
 			}
 			return texto;
 		}
-
 }

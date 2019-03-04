@@ -1,7 +1,8 @@
 # Desafio Crawlers Parte 1
 
 ## Plataforma
-Java 8
+* Java 8
+* Netbeans 8.2
 
 ## Dependências
 * Jsoup 1.11.3
